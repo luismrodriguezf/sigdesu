@@ -1,0 +1,183 @@
+<div class="row">
+<div class="col-12">
+
+	<form class="form" (submit)="agregarDato()">
+		
+
+		<fieldset class="form-group">
+
+		<div class="row max-30">
+
+			<div class="col"></div>
+
+			<div class="col">
+				
+				<table class="table table-sm table-hover table-responsive">
+
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Propiedad</th>
+				      <th scope="col">Valor</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr *ngFor="let propiedad of capaActiva.atributos; let i = index; ">
+				      <th scope="row"
+				      *ngIf="propiedad.nombre!='geom' &&
+				      		propiedad.nombre!='figura' &&
+				      		propiedad.nombre!='color'">{{i+1}}</th>
+				      <td *ngIf="propiedad.nombre!='geom' &&
+				      		propiedad.nombre!='figura' &&
+				      		propiedad.nombre!='color'">{{propiedad.nombre}}</td>
+				      <td *ngIf="propiedad.nombre!='geom' &&
+				      		propiedad.nombre!='figura' &&
+				      		propiedad.nombre!='color'"><input class="form-control-sm" [type]="propiedad.tipo" [name]="propiedad.nombre" [(ngModel)]="atributos[''+propiedad.nombre]"></td>
+				      <th scope="row" *ngIf="propiedad.nombre=='figura'">{{i+1}}</th>
+				      <td *ngIf="propiedad.nombre=='figura'">{{propiedad.nombre}}</td>
+				      <td *ngIf="propiedad.nombre=='figura'">
+				      	<button type="button" class="btn btn-outline-success" (click)="open(iconsContent)" [disabled]="registros > 0">
+				      		<i [class]="'fa fa-'+figura" aria-hidden="true"></i>
+				      	</button>
+				      </td>
+				      <th scope="row" *ngIf="propiedad.nombre=='color'">{{i+1}}</th>
+				      <td *ngIf="propiedad.nombre=='color'">{{propiedad.nombre}}</td>
+				      <td *ngIf="propiedad.nombre=='color'">
+				      	<input type="color" name="color" [(ngModel)]="color" [disabled]="registros > 0" />
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>
+
+			</div>
+
+			<div class="col"></div>
+
+		</div>		
+
+		<div class="row max-30">
+
+			<div class="col">
+				
+				<table class="table table-sm table-hover table-responsive" *ngIf="capaActiva.geometria">
+				  <caption>Coordenadas</caption>
+
+				  <thead *ngIf="capaActiva.geometria=='Point'">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Longitud</th>
+				      <th scope="col">Latitud</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <thead class="thead-dark" *ngIf="capaActiva.geometria!='Point'">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Longitud</th>
+				      <th scope="col">Latitud</th>
+				      <th scope="col"></th>
+				      <th scope="col">Subir</th>
+				      <th scope="col">Bajar</th>
+				      <th scope="col">Remover</th>
+				    </tr>
+				  </thead>
+				  <tbody *ngIf="capaActiva.geometria=='Polygon'">
+				    <tr *ngFor="let coord of capaActiva.coordenadas[0]; let i = index; ">
+				      <th scope="row">{{i+1}}</th>
+				      <td>{{coord[0]}}</td>
+				      <td>{{coord[1]}}</td>
+				      <td></td>
+				      <td><button class="btn btn-warning" *ngIf="i!=0" (click)="subirCoordenada(i)"><i class="fa fa-arrow-up"></i></button></td>
+				      <td><button class="btn btn-warning" *ngIf="i<capaActiva.coordenadas[0].length-1" (click)="bajarCoordenada(i)"><i class="fa fa-arrow-down"></i></button></td>
+				      <td><button type="button" class="btn btn-danger" (click)="removerCoordenada(i)"><i class="fa fa-minus"></i></button></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">#</th>
+				      <td><input class="form-control-sm" type="number" name="coord" [(ngModel)]="coordenadaNueva.longitud" [disabled]="capaActiva.cerrada"></td>
+				      <td><input class="form-control-sm" type="number" name="coord" [(ngModel)]="coordenadaNueva.latitud" [disabled]="capaActiva.cerrada"></td>
+				      <td><button type="button" class="btn btn-success" (click)="agregarCoordenada(coordenadaNueva.longitud,coordenadaNueva.latitud)" *ngIf="!capaActiva.cerrada"><i class="fa fa-plus"></i></button></td>
+				      <td></td>
+				      <td></td>
+				      <td></td>
+				    </tr>
+				  </tbody>
+				  <tbody *ngIf="capaActiva.geometria=='LineString'">
+				    <tr *ngFor="let coord of capaActiva.coordenadas; let i = index; ">
+				      <th scope="row">{{i+1}}</th>
+				      <td>{{coord[0]}}</td>
+				      <td>{{coord[1]}}</td>
+				      <td></td>
+				      <td><button class="btn btn-warning" *ngIf="i!=0" (click)="subirCoordenada(i)"><i class="fa fa-arrow-up"></i></button></td>
+				      <td><button class="btn btn-warning" *ngIf="i<capaActiva.coordenadas.length-1" (click)="bajarCoordenada(i)"><i class="fa fa-arrow-down"></i></button></td>
+				      <td><button type="button" class="btn btn-danger" (click)="removerCoordenada(i)"><i class="fa fa-minus"></i></button></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">#</th>
+				      <td><input class="form-control-sm" type="number" name="coord" [(ngModel)]="coordenadaNueva.longitud" [disabled]="capaActiva.cerrada"></td>
+				      <td><input class="form-control-sm" type="number" name="coord" [(ngModel)]="coordenadaNueva.latitud" [disabled]="capaActiva.cerrada"></td>
+				      <td><button type="button" class="btn btn-success" (click)="agregarCoordenada(coordenadaNueva.longitud,coordenadaNueva.latitud)" *ngIf="!capaActiva.cerrada"><i class="fa fa-plus"></i></button></td>
+				      <td></td>
+				      <td></td>
+				      <td></td>
+				    </tr>
+				  </tbody>
+				  <tbody *ngIf="capaActiva.geometria=='Point'">
+				    <tr *ngIf="capaActiva.coordenadas.length">
+				      <th scope="row">1</th>
+				      <td>{{capaActiva.coordenadas[0]}}</td>
+				      <td>{{capaActiva.coordenadas[1]}}</td>
+				      <td><button type="button" class="btn btn-danger" (click)="removerCoordenada(i)"><i class="fa fa-minus"></i></button></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">#</th>
+				      <td><input class="form-control-sm" type="number" name="coord" [(ngModel)]="coordenadaNueva.longitud" [disabled]="capaActiva.cerrada"></td>
+				      <td><input class="form-control-sm" type="number" name="coord" [(ngModel)]="coordenadaNueva.latitud" [disabled]="capaActiva.cerrada"></td>
+				      <td><button type="button" class="btn btn-success" (click)="agregarCoordenada(coordenadaNueva.longitud,coordenadaNueva.latitud)" *ngIf="!capaActiva.cerrada"><i class="fa fa-plus"></i></button></td>
+				    </tr>
+				  </tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+
+		</fieldset>		
+
+		<div class="row">
+			<div class="col-auto">
+				<input type="submit" class="btn btn-outline-success" value="Enviar">
+			</div>
+			<div class="col-auto">
+				<button type="button" class="btn btn-outline-danger" (click)="terminarAgregar(false)">Cancelar</button>
+			</div>
+			<div class="col"></div>
+		</div>
+
+	</form>
+
+</div>
+</div>
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>
+
+
+		<ng-template #iconsContent let-c="close" let-d="dismiss">
+		  <div class="modal-header">
+			    <h4 class="modal-title">Iconos</h4>
+			    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			    	<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-4 col-sm-3" *ngFor="let icono of iconos">
+						<button type="button" class="btn btn-outline-success btn-block" (click)="elegirIcono(icono)">
+							<i [class]="'fa fa-3x fa-'+icono" aria-hidden="true"></i>
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</ng-template>

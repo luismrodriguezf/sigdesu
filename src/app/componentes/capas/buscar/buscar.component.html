@@ -1,0 +1,77 @@
+<a style="display: none" id="filtrarCapasBoton" (click)="filtrarCapas(categoria)"></a>
+
+<div class="row">
+<div class="col-12">
+
+	<div class="row">
+		<div class="col">
+			<select class="form-control" name="cat_select" [(ngModel)]="categoria" (change)="filtrarCapas(categoria)">
+				<option value="" selected default>Todas las Categorias</option>
+				<option *ngFor="let cat of categorias" [value]="cat.id">{{cat.nombre}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="row short-mod">
+
+		<div class="col">
+			
+			<table class="table table-hover table-responsive">
+			  <caption>Listado de Capas</caption>
+
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Categoria</th>
+			      <th scope="col">Nombre</th>
+			      <th scope="col">Geometria</th>
+			      <th scope="col"></th>
+			      <th scope="col"></th>
+			      <th scope="col"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let capa of capasFiltradas; let i = index; ">
+			      <th scope="row">{{i+1}}</th>
+			      <td>{{capa.categoria.nombre}}</td>
+			      <td>{{capa.nombre}}</td>
+			      <td>{{capa.geometria}}</td>
+			      <td><button type="button" class="btn btn-outline-info"><i class="fa fa-search"></i></button></td>
+			      <td><button type="button" class="btn btn-outline-warning" (click)="editarCapa(capa)"><i class="fa fa-pencil-square-o"></i></button></td>
+			      <td><button type="button" class="btn btn-outline-danger" (click)="eliminarCapa(capa)" [disabled]=""><i class="fa fa-trash-o"></i></button></td>
+			    </tr>			    
+			    <tr>
+			      <th scope="row">#</th>
+			      <td>
+					<select class="form-control" name="categoria" [(ngModel)]="capaNueva.categoria">
+						<option value="" selected disabled></option>
+						<option *ngFor="let cat of categorias" [value]="cat.id">{{cat.nombre}}</option>
+					</select>
+			      </td>
+			      <td><input type="text" class="form-control" name="nombre" [(ngModel)]="capaNueva.nombre"></td>
+			      <td>
+					<select class="form-control" name="geometria" [(ngModel)]="capaNueva.geometria">
+						<option value="" selected disabled></option>
+						<option value="Point">PUNTO</option>
+						<option value="LineString">LINEA</option>
+						<option value="Polygon">POLIGONO</option>
+						<option value="MultiPoint">MULTI-PUNTO</option>
+						<option value="MultiLineString">MULTI-LINEA</option>
+						<option value="MultiPolygon">MULTI-POLIGONO</option>
+					</select>			      	
+			      </td>
+			      <td><button type="button" class="btn btn-outline-success" (click)="agregarCapa()"><i class="fa fa-plus"></i></button></td>
+			      <td></td>
+			      <td></td>
+			    </tr>
+			  </tbody>
+			</table>
+
+		</div>
+
+	</div>
+		
+</div>
+</div>
+
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>

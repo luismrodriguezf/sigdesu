@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+i.fa-spinner{
+  position: fixed;
+  left: calc(50% - 30px);
+  top:  calc(50% - 50px);  
+  z-index: 2000;
+}
+flash-messages{
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 5000;
+  padding: 3px 1%;
+}
+
+.popup-table .col-left{
+	font-weight: bold;
+}
+
+.leaflet-popup-content-wrapper{
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.leaflet-control-layers-overlays > label > div{
+  height: 30px;
+}
+
+.cuadrito{
+  float: right;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.iconimg{
+  width: 25px;
+  height: 25px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(100,100,100,0.4); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+    background: rgba(0,0,0,0.5); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.7); 
+}
+
+/* Handle on active */
+::-webkit-scrollbar-thumb:active {
+    background: rgba(0,0,0,0.5); 
+}

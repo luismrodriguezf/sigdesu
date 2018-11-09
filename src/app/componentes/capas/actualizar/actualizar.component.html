@@ -1,0 +1,85 @@
+<div class="row">
+<div class="col-12">
+	
+	<form class="form" (submit)="actualizarCapa()">
+		
+		<fieldset class="form-group">
+
+		<div class="row">
+			<div class="form-group col">
+				<label class="control-label" for="categoria">Categoria</label>
+				<select class="form-control" name="categoria" [(ngModel)]="capa.categoria.id" (change)="cambiarCategoria()">
+					<option value="" selected disabled></option>
+					<option *ngFor="let cat of categorias" [value]="cat.id">{{cat.nombre}}</option>
+				</select>
+			</div>
+			<div class="form-group col">
+				<label class="control-label" for="nombre">Nombre</label>
+				<input type="text" class="form-control" name="nombre" [(ngModel)]="capa.nombre" >
+			</div>
+			<div class="form-group col">
+				<label class="control-label" for="geometria">Geometria</label>
+				<input type="text" class="form-control" name="geometria" [(ngModel)]="capa.geometria" disabled>
+			</div>
+		</div>
+
+		<div class="row short-mod">
+
+			<div class="col">
+				
+				<table class="table table-hover table-responsive">
+				  <caption>Propiedades de la Capa</caption>
+
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Propiedad</th>
+				      <th scope="col">Tipo</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr *ngFor="let atributo of capa.atributos; let i = index; ">
+				      <th scope="row" *ngIf="atributo.nombre!='geom'">{{i}}</th>
+				      <td *ngIf="atributo.nombre!='geom'">{{atributo.nombre}}</td>
+				      <td *ngIf="atributo.nombre!='geom'">{{atributo.tipo}}</td>
+				      <td *ngIf="atributo.nombre!='geom'"><button type="button" class="btn btn-outline-danger" (click)="removerPropiedad(i)"><i class="fa fa-minus"></i></button></td>
+				    </tr>			    
+				    <tr>
+				      <th scope="row">#</th>
+				      <td><input type="text" class="form-control" [(ngModel)]="propiedadNueva.nombre" name="nombre_propiedad"></td>
+				      <td>
+				      	<select class="form-control" [(ngModel)]="propiedadNueva.tipo" name="tipo_dato">
+				      		<option value="" selected default></option>
+				      		<option value="Text">Texto</option>
+				      		<option value="Int">Numero Entero</option>
+				      		<option value="Float">Numero Decimal</option>
+				      	</select>
+				      </td>
+				      <td><button type="button" class="btn btn-outline-success" (click)="agregarPropiedad()"><i class="fa fa-plus"></i></button></td>
+				    </tr>
+				  </tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+		</fieldset>		
+
+		<div class="row">
+			<div class="col-auto">
+				<input type="submit" class="btn btn-outline-success" value="Actualizar">
+			</div>
+			<div class="col-auto">
+				<button type="button" class="btn btn-outline-danger" (click)="terminarEdicion()">Cancelar</button>
+			</div>
+			<div class="col"></div>
+		</div>
+
+	</form>
+
+</div>
+</div>
+
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>

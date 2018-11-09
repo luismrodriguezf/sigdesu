@@ -1,0 +1,23 @@
+<p-progressBar mode="indeterminate" *ngIf="loading"></p-progressBar>
+<p-growl [(value)]="msgs"></p-growl>
+<div class="card" style="width: 18rem; margin-right:auto; margin-left:auto">
+  <img class="card-img-top" src="./assets/images/user.png" height="200" alt="Card image cap">
+  <div class="card-body">
+      <fieldset class="form-group">
+        <label for="email2" class="bmd-label-floating">Correo Electronico</label>
+        <input type="email" disabled="true" [(ngModel)]="email"  class="form-control" id="email">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="nombre" class="bmd-label-floating">Nombre</label>
+        <input type="text" [(ngModel)]="nombre" class="form-control" id="nombre">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="apellido" class="bmd-label-floating">Apellido</label>
+        <input type="text" [(ngModel)]="apellido"  class="form-control" id="apellido">
+      </fieldset>
+      <div class="center">
+        <button type="button" class="btn btn-success btn-lg" (click)="update()">Actualizar</button>
+         <br/>
+      </div>
+  </div>
+</div>

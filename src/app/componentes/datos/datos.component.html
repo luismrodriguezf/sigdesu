@@ -1,0 +1,22 @@
+<app-agregar-datos 
+(agregarTerminado)="pedirTerminarAgregar($event)"
+(coordenadaActualizada)="pedirActualizarGeojsonEditable($event)"
+(capaCerrada)="pedirTrancarExterno($event)"
+[capaElegida]="capaElegida"
+[capas]="capas"
+[estructuras]="estructuras"
+[figura]="figura"
+[color]="color"
+[registros]="capaElegida.geojson.features.length"
+*ngIf="agregarDatosActivado">
+</app-agregar-datos>
+
+<app-buscar-datos 
+	[categorias]="categorias"
+	[capas]="capas"
+	[capasActivas]="capaActivas"
+	[estructuras]="estructuras"
+	(registroNuevoRequerido)="comenzarRegistro($event)"
+	(capaRefrescada)="pedirRefrescarMapa($event)"
+	*ngIf="!agregarDatosActivado">
+</app-buscar-datos>

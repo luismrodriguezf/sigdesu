@@ -1,0 +1,40 @@
+<button class="dropdown-item" (click)="open(content)">Categorias</button>
+
+	<ng-template #content let-c="close" let-d="dismiss">
+	  <div class="modal-header">
+		    <h4 class="modal-title">Administrar Categorías</h4>
+		    <button type="button" id="botonCerrarCat" class="close" aria-label="Close" (click)="d('Cross click')">
+		    	<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="modal-body">
+
+			<app-crear-categorias 
+				(creacionTerminada)="terminarCreacion()" 
+				[categoria]="categoria" 
+				*ngIf="crearActivado">
+			</app-crear-categorias>
+
+			<app-actualizar-categorias 
+				(edicionTerminada)="terminarEdicion()" 
+				[categoria]="categoria" 
+				*ngIf="editarActivado">
+			</app-actualizar-categorias>
+
+			<app-eliminar-categorias 
+				(borradoTerminado)="terminarBorrado()" 
+				[categoria]="categoria" 
+				*ngIf="borrarActivado">
+			</app-eliminar-categorias>
+
+			<app-buscar-categorias 
+				(categoriaCambiada)="agregarCategoria($event)" 
+				(categoriaActualizada)="actualizarCategoria($event)" 
+				(categoriaEliminada)="eliminarCategoria($event)" 
+				(administrarCapaRequerida)="administrarCapa($event)" 
+				*ngIf="!crearActivado && !editarActivado && !borrarActivado">
+			</app-buscar-categorias>
+			
+		</div>
+	</ng-template>

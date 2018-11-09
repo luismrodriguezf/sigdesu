@@ -1,0 +1,591 @@
+		<a style="display: none;"
+		id="openMapFilter"
+		(click)="openFilter(filterContent)"></a> 
+		
+		<a style="display: none;"
+		id="openMapDistance"
+		(click)="toggleDistance()">
+		</a> 
+
+		<a style="display: none;"
+		id="openMapArea"
+		(click)="toggleArea()">
+		</a> 
+
+		<a style="display: none;"
+		id="openMapPoint"
+		(click)="togglePoint()">
+		</a> 
+
+		<a style="display: none;"
+		id="openMapData"
+		(click)="toggleData()">
+		</a> 
+
+<div class="dataDialog hidden">
+
+				<div class="row">
+					<div class="col-12">
+
+
+						<app-datos 
+						[categorias]="categoriaActiva" 
+						[capasActivas]="capasActivas"
+						[capas]="geoJsons"
+						[estructuras]="capas"
+						(coordenadaActualizada)="actualizarGeojsonEditable($event)"
+						(capaCerrada)="trancarExterno()"
+						(mapaRefrescadoRequerido)="refrescarMapa($event)">	
+						</app-datos>
+
+
+
+					</div>
+				</div>
+
+
+</div>
+<div class="pointDialog hidden">
+
+			<form class="form">
+				
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchlat" class="control-label">Latitud</label>
+						<input type="number" min="-90" max="90" class="form-control form-control-sm" name="searchlat" [(ngModel)]="searchPoint.lat" />
+					</div>
+				</div>			
+	
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchlng" class="control-label">Longitud</label>
+						<input type="number" min="-180" max="180" class="form-control form-control-sm" name="searchlng" [(ngModel)]="searchPoint.lng" />
+					</div>
+				</div>			
+
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchrad" class="control-label">Radio(mts.)</label>
+						<input type="number" min="1" class="form-control form-control-sm map-input" name="searchrad" [(ngModel)]="searchPoint.radius" />
+					</div>
+				</div>				
+
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchradArea" class="control-label">Area</label>
+						<input type="number" min="1" class="form-control form-control-sm map-input" name="searchradArea" [(ngModel)]="searchPoint.area" disabled/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col">
+						<button type="button" class="btn btn-outline-danger btn-sm" (click)="limpiarPunto()"> <i class="fa fa-eraser" aria-hidden="true"></i> </button>
+						<button type="button" class="btn btn-outline-warning btn-sm" (click)="obtenerPunto()"> <i class="fa fa-street-view" aria-hidden="true"></i> </button>
+						<button type="button" class="btn btn-outline-info btn-sm" (click)="encontrarPunto()"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+					</div>
+				</div>
+			</form>
+
+</div>
+<div class="areaDialog hidden">
+
+	<div class="row">
+		<div class="col">
+			<table class="table">
+				<caption>Unidad de area
+					<br>
+					<button type="button" class="btn btn-outline-info btn-sm" (click)="unidadArea='Km2'" >Km2</button>
+					<button type="button" class="btn btn-outline-info btn-sm" (click)="unidadArea='m2'" >m2</button>
+				</caption>
+
+				<thead>
+					<tr>
+						<th *ngIf="unidadArea=='Km2'" scope="col">Área (Km2.)</th>
+						<th *ngIf="unidadArea=='m2'" scope="col">Área (m2.)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td *ngIf="unidadArea=='Km2'">{{medidaArea.toFixed(8)}}</td>
+						<td *ngIf="unidadArea=='m2'">{{(medidaArea*1000000).toFixed(8)}}</td>
+					</tr>
+				</tbody>
+			</table>			
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="form-group col">
+			<button type="button" class="btn btn-outline-danger btn-sm" (click)="limpiarPoligono()"> <i class="fa fa-eraser" aria-hidden="true"></i> </button>
+			<button type="button" class="btn btn-outline-info btn-sm" (click)="medirAreaDibujada()"> <i class="fa fa-paint-brush" aria-hidden="true"></i> </button>
+		</div>
+	</div>
+
+</div>
+<div class="distanceDialog hidden">
+				<form class="form">
+					
+					<div class="row">
+						<div class="form-group col">
+							<table class="table">
+							  <caption>Unidad de distancia
+							  	<br>
+							  	<button type="button" class="btn btn-outline-info btn-sm" (click)="unidadDistancia='Km'" >Km</button>
+							  	<button type="button" class="btn btn-outline-info btn-sm" (click)="unidadDistancia='m'" >mts</button>
+							  </caption>
+							  <thead>
+							    <tr>
+							      <th *ngIf="unidadDistancia=='Km'" scope="col">Distancia (Km.)</th>
+							      <th *ngIf="unidadDistancia=='m'" scope="col">Distancia (mts.)</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td *ngIf="unidadDistancia=='Km'">{{medidaDistancia.toFixed(8)}}</td>
+							      <td *ngIf="unidadDistancia=='m'">{{(medidaDistancia*1000).toFixed(8)}}</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>					
+
+					<div class="row">
+						<div class="form-group col">
+							<button type="button" class="btn btn-outline-danger btn-sm" (click)="limpiarCamino()"> <i class="fa fa-eraser" aria-hidden="true"></i> </button>
+							<button type="button" class="btn btn-outline-info btn-sm" (click)="medirCaminoDibujado()"> <i class="fa fa-paint-brush" aria-hidden="true"></i> </button>
+						</div>
+					</div>
+				</form>	
+</div>		
+
+		<ng-template #filterContent let-c="close" let-d="dismiss">
+		  <div class="modal-header">
+			    <h4 class="modal-title">Aplicar filtros</h4>
+			    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			    	<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-12">
+						<form class="form">
+
+							<fieldset id="filterSet" style="background-color: rgba(255,255,255,0.1);">
+
+								<div class="row">
+
+									<div class="form-group col-6">
+
+										<label class="control-label" for="layerToFilter">Capa</label>
+										<select class="form-control" name="layerToFilter" [(ngModel)]="layerToFilter" (change)="filtrarAtributos()">
+											<option value="" selected disabled>Capa...</option>
+											<option *ngFor="let cap of capasActivas" [value]="cap">{{cap}}</option>
+										</select>
+									</div>						
+									<div class="form-group col-6">
+
+										<label class="control-label" for="atributoFiltrado">Atributo</label>
+										<select class="form-control" name="atributoFiltrado" [(ngModel)]="atributoFiltrado" (change)="elegirAtributo()">
+											<option value="" selected disabled>Atributo...</option>
+											<option *ngFor="let att of attributesToFilter" [value]="att.nombre">{{att.nombre}}</option>
+										</select>
+									</div>
+									
+
+								</div>
+			
+								<div class="row">
+
+									<div class="form-group col-6">
+
+										<label class="control-label" for="filtroElegido">Filtro</label>
+										<select class="form-control" name="filtroElegido" [(ngModel)]="filtroElegido" [disabled]="atributoElegido.nombre==''">
+											<option value="" selected disabled>Filtro...</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="mayor">Mayor</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="mayorigual">Mayor o Igual</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="menor">Menor</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="menorigual">Menor o Igual</option>
+											<option value="igual">Igual</option>
+											<option value="diferente">Diferente</option>
+										</select>
+									</div>
+									<div class="form-group col-6">
+											<label class="control-label" for="valorBusqueda">Valor</label>
+
+											<input *ngIf="atributoElegido.tipo=='Text'" type="text" name="valorBusqueda" class="form-control" [(ngModel)]="valorBusqueda" [disabled]="filtroElegido==''">
+											<input *ngIf="atributoElegido.tipo!='Text'" type="number" name="valorBusqueda" class="form-control" [(ngModel)]="valorBusqueda" [disabled]="filtroElegido==''">
+									</div>
+
+								</div>
+
+								<div class="row">
+									
+									<div class="form-group col-8"></div>
+									<div class="form-group col-auto">
+										<button type="button" class="btn btn-outline-danger" ngbPopover="Limpiar" triggers="mouseenter:mouseleave" (click)="limpiarFiltro()"><i class="fa fa-eraser"></i></button>
+									</div>
+									<div class="form-group col-auto">
+										<button type="button" class="btn btn-outline-primary" ngbPopover="Aplicar filtro" triggers="mouseenter:mouseleave" (click)="aplicarFiltro()" [disabled]="valorBusqueda==''"><i class="fa fa-filter"></i></button>
+									</div>
+								</div>
+							</fieldset>
+							
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</ng-template>
+
+<div class="row-full">
+	<div id="mapid"></div>
+</div>
+
+<flash-messages></flash-messages>
+<div style="display: none">
+
+	<button type="button" id="mostrarCapaNueva" style="display: none" (click)="cargarGeojsonFromLocal()"></button>
+	<button type="button" id="removerCapaVieja" style="display: none" (click)="removerGeojsonFromLocal()"></button>
+	<button type="button" id="previsualizarCapa" style="display: none" (click)="previsualizarCapa()"></button>
+	
+	
+	<div>
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" style="width: 40px; height: 40px;" id="formularioFiltro" (mouseenter)="prevenirInteraccion('f')" (mouseleave)="permitirInteraccion('f')">
+
+			<div (click)="toggleFilter()"><i class="fa fa-filter fa-2x" aria-hidden="true"></i></div>
+			<a style="display: none" id="modalFiltro" (click)="openFilter(filterContent)"></a>
+		</div>
+
+
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioFiltro2" (mouseenter)="prevenirInteraccion('f')" (mouseleave)="permitirInteraccion('f')">
+
+			<div *ngIf="!filterHovered||!capasActivas.length" class="text-center" style="font-size: 14px;"><i class="fa fa-filter fa-2x" aria-hidden="true"></i></div>
+			<div *ngIf="filterHovered&&capasActivas.length">
+
+				<div class="row" style="width: 900px;">
+					<div class="col-12">
+						<form class="form">
+
+							<fieldset id="filterSet">
+
+								<div class="row">
+
+									<div class="form-group col-3">
+
+										<label class="control-label" for="layerToFilter">Capa</label>
+										<select class="form-control" name="layerToFilter" [(ngModel)]="layerToFilter" (change)="filtrarAtributos()">
+											<option value="" selected disabled>Capa...</option>
+											<option *ngFor="let cap of capasActivas" [value]="cap">{{cap}}</option>
+										</select>
+									</div>						
+									<div class="form-group col-3">
+
+										<label class="control-label" for="atributoFiltrado">Atributo</label>
+										<select class="form-control" name="atributoFiltrado" [(ngModel)]="atributoFiltrado" (change)="elegirAtributo()">
+											<option value="" selected disabled>Atributo...</option>
+											<option *ngFor="let att of attributesToFilter" [value]="att.nombre">{{att.nombre}}</option>
+										</select>
+									</div>
+
+									<div class="form-group col-2">
+
+										<label class="control-label" for="filtroElegido">Filtro</label>
+										<select class="form-control" name="filtroElegido" [(ngModel)]="filtroElegido" [disabled]="atributoElegido.nombre==''">
+											<option value="" selected disabled>Filtro...</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="mayor">Mayor</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="mayorigual">Mayor o Igual</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="menor">Menor</option>
+											<option *ngIf="atributoElegido.tipo!='Text'" value="menorigual">Menor o Igual</option>
+											<option value="igual">Igual</option>
+											<option value="diferente">Diferente</option>
+										</select>
+									</div>
+
+									<div class="form-group col-2">
+
+											<label class="control-label" for="valorBusqueda">Valor</label>
+											<input *ngIf="atributoElegido.tipo=='Text'" type="text" name="valorBusqueda" class="form-control" [(ngModel)]="valorBusqueda" [disabled]="filtroElegido==''">
+											<input *ngIf="atributoElegido.tipo!='Text'" type="number" name="valorBusqueda" class="form-control" [(ngModel)]="valorBusqueda" [disabled]="filtroElegido==''">
+									</div>
+
+									<div class="form-group col-2">
+										<div class="btn-group" role="group" style="margin-top: 2em;"aria-label="Basic example">
+											<button type="button" class="btn btn-outline-primary" style="margin-left: -15px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" ngbPopover="Aplicar filtro" triggers="mouseenter:mouseleave" (click)="aplicarFiltro()" [disabled]="valorBusqueda==''"><i class="fa fa-filter"></i></button>
+											<button type="button" class="btn btn-outline-warning" style="border-radius: 5px; margin-left: 5px;" ngbPopover="Limpiar" triggers="mouseenter:mouseleave" (click)="limpiarFiltro()"><i class="fa fa-eraser"></i></button>
+											<button type="button" class="btn btn-outline-danger" style="border-radius: 5px; margin-left: 5px;" ngbPopover="Cancelar" triggers="mouseenter:mouseleave" (click)="limpiarFormularioFiltro()"><i class="fa fa-times"></i></button>
+										</div>										
+									</div>								
+
+								</div>
+
+							</fieldset>
+
+
+						</form>
+					</div>
+				</div>
+				
+			</div> <!-- FIN DE FORMULARIO -->
+
+		</div>		
+
+
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioHome">
+			<div class="text-center">
+				<button type="button" class="btn btn-outline-secondary btn-sm" (click)="irCentro()">
+					<i class="fa fa-home fa-2x" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioFoto">
+
+			<div style="display: block;" class="text-center">
+				<button type="button" class="btn btn-outline-secondary btn-sm"
+				(click)="openFilter(cameraContent)">
+					<i class="fa fa-camera fa-2x" aria-hidden="true"></i>
+				</button>
+			</div>
+			<div style="display: none;">
+
+		<ng-template #cameraContent let-c="close" let-d="dismiss">
+		  <div class="modal-header">
+			    <h4><i class="fa fa-camera"></i>Capturar imagen</h4>
+			    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			    	<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					
+					<div class="col"></div>
+					<div class="col-auto">
+				            
+			            <div id="fotoCanvas"></div>
+				            
+					</div>
+					<div class="col"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+				            
+			            <button type="button" class="btn btn-outline-info" (click)="tomarFoto()" [disabled]="loading"><i class="fa fa-camera"></i></button>
+			            <button type="button" class="btn btn-outline-success" (click)="descargarFoto()" [disabled]="!fotoDibujada"><i class="fa fa-download"></i></button>
+
+					</div>
+				</div>
+
+			</div>
+		</ng-template>
+
+				
+			</div> <!-- FIN DE FORMULARIO -->
+
+		</div>
+
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioDatos" (mouseenter)="prevenirInteraccion('i')" (mouseleave)="permitirInteraccion('i')">
+
+			<div style="display: block;"class="text-center"><i class="fa fa-map-o fa-2x" aria-hidden="true"></i></div>
+			<div style="display: none;">
+
+				<div class="row" style="width: 400px;">
+					<div class="col-12">
+
+
+						<app-datos 
+						[categorias]="categoriaActiva" 
+						[capasActivas]="capasActivas"
+						[capas]="geoJsons"
+						[estructuras]="capas"
+						(coordenadaActualizada)="actualizarGeojsonEditable($event)"
+						(capaCerrada)="trancarExterno()"
+						(mapaRefrescadoRequerido)="refrescarMapa($event)">	
+						</app-datos>
+
+
+
+					</div>
+				</div>
+				
+			</div> <!-- FIN DE FORMULARIO -->
+
+		</div>
+
+
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioPunto" (mouseenter)="prevenirInteraccion('p')" (mouseleave)="permitirInteraccion('p')">
+
+			<div *ngIf="!pointHovered&&!dibujandoPunto"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i></div>
+			<div *ngIf="pointHovered">
+
+			<form class="form">
+				
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchlat" class="control-label">Latitud</label>
+						<input type="number" min="-90" max="90" class="form-control" name="searchlat" [(ngModel)]="searchPoint.lat" />
+					</div>
+				</div>			
+	
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchlng" class="control-label">Longitud</label>
+						<input type="number" min="-180" max="180" class="form-control" name="searchlng" [(ngModel)]="searchPoint.lng" />
+					</div>
+				</div>			
+
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchrad" class="control-label">Radio(mts.)</label>
+						<input type="number" min="1" class="form-control map-input" name="searchrad" [(ngModel)]="searchPoint.radius" />
+					</div>
+				</div>				
+
+				<div class="row">
+					<div class="form-group col">
+						<label for="searchradArea" class="control-label">Area</label>
+						<input type="number" min="1" class="form-control map-input" name="searchradArea" [(ngModel)]="searchPoint.area" disabled/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col">
+						<button type="button" class="btn btn-outline-danger" (click)="limpiarPunto()"> <i class="fa fa-eraser" aria-hidden="true"></i> </button>
+						<button type="button" class="btn btn-outline-warning" (click)="obtenerPunto()"> <i class="fa fa-street-view" aria-hidden="true"></i> </button>
+						<button type="button" class="btn btn-outline-info" (click)="encontrarPunto()"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+					</div>
+				</div>
+			</form>
+
+			</div>
+			
+
+		</div>		
+		
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioDistancia" (mouseenter)="prevenirInteraccion('d')" (mouseleave)="permitirInteraccion('d')">
+			
+			<div *ngIf="!distanceHovered&&!dibujandoCamino" style="font-size: 11px;"><i class="fa fa-road fa-2x" aria-hidden="true"></i></div>
+			<div *ngIf="distanceHovered">				
+
+				<form class="form">
+					
+					<div class="row">
+						<div class="form-group col">
+							<table class="table">
+							  <caption>Unidad de distancia
+							  	<br>
+							  	<button type="button" class="btn btn-outline-info" (click)="unidadDistancia='Km'" >Km</button>
+							  	<button type="button" class="btn btn-outline-info" (click)="unidadDistancia='m'" >mts</button>
+							  </caption>
+							  <thead>
+							    <tr>
+							      <th *ngIf="unidadDistancia=='Km'" scope="col">Distancia (Km.)</th>
+							      <th *ngIf="unidadDistancia=='m'" scope="col">Distancia (mts.)</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td *ngIf="unidadDistancia=='Km'">{{medidaDistancia.toFixed(8)}}</td>
+							      <td *ngIf="unidadDistancia=='m'">{{(medidaDistancia*1000).toFixed(8)}}</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>					
+
+					<div class="row">
+						<div class="form-group col">
+							<button type="button" class="btn btn-outline-danger" (click)="limpiarCamino()"> <i class="fa fa-eraser" aria-hidden="true"></i> </button>
+							<button type="button" class="btn btn-outline-warning" (click)="medirCaminoElegido()"> <i class="fa fa-road" aria-hidden="true"></i> </button>
+							<button type="button" class="btn btn-outline-info" (click)="medirCaminoDibujado()"> <i class="fa fa-paint-brush" aria-hidden="true"></i> </button>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+
+
+		</div>
+
+		<div class="leaflet-control-layers leaflet-control leaflet-control-layers-expanded" id="formularioArea" (mouseenter)="prevenirInteraccion('a')" (mouseleave)="permitirInteraccion('a')">
+
+			<div *ngIf="!areaHovered&&!dibujandoPoligono" style="font-size: 11px;"><i class="fa fa-bandcamp fa-2x" aria-hidden="true"></i></div>
+			<div *ngIf="areaHovered">				
+
+				<form class="form">
+					
+					<div class="row">
+						<div class="form-group col">
+							<table class="table">
+							  <caption>Unidad de area
+							  	<br>
+							  	<button type="button" class="btn btn-outline-info" (click)="unidadArea='Km2'" >Km2</button>
+							  	<button type="button" class="btn btn-outline-info" (click)="unidadArea='m2'" >m2</button>
+							  </caption>
+
+							  <thead>
+							    <tr>
+							      <th *ngIf="unidadArea=='Km2'" scope="col">Área (Km2.)</th>
+							      <th *ngIf="unidadArea=='m2'" scope="col">Área (m2.)</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td *ngIf="unidadArea=='Km2'">{{medidaArea.toFixed(8)}}</td>
+							      <td *ngIf="unidadArea=='m2'">{{(medidaArea*1000000).toFixed(8)}}</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row" >
+						<div class="form-group col">
+							<table class="table">
+
+							  <caption>Unidad de distancia
+							  	<br>
+							  	<button type="button" class="btn btn-outline-info" (click)="unidadPerimetro='Km'" >Km</button>
+							  	<button type="button" class="btn btn-outline-info" (click)="unidadPerimetro='m'" >mts</button>
+							  </caption>
+
+							  <thead>
+							    <tr>
+							      <th *ngIf="unidadPerimetro=='Km'" scope="col">Perímetro (Km.)</th>
+							      <th *ngIf="unidadPerimetro=='m'" scope="col">Perímetro (mts.)</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td *ngIf="unidadPerimetro=='Km'">{{medidaDistancia.toFixed(8)}}</td>
+							      <td *ngIf="unidadPerimetro=='m'">{{(medidaDistancia*1000).toFixed(8)}}</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col">
+							<button type="button" class="btn btn-outline-danger" (click)="limpiarPoligono()"> <i class="fa fa-eraser" aria-hidden="true"></i> </button>
+							<button type="button" class="btn btn-outline-warning" (click)="medirAreaElegida()"> <i class="fa fa-bandcamp" aria-hidden="true"></i> </button>
+							<button type="button" class="btn btn-outline-info" (click)="medirAreaDibujada()"> <i class="fa fa-paint-brush" aria-hidden="true"></i> </button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			
+
+		</div>
+	</div>
+
+</div>
+
+
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>

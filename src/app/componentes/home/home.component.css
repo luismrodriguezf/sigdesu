@@ -1,0 +1,71 @@
+.home{
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.logo-descripcion{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.logo{
+    display: block; text-align: center; margin: auto;
+}
+
+div.row.btn-min a.btn{
+	margin-left: calc(65% - 100px);
+}
+
+div.row.btn-min div.col-12{
+	margin-top: 0.5rem;
+}
+
+
+.ui-panel-images{
+position: absolute;
+top: 50%;
+left: 50%;
+min-width: 100%;
+min-height: 100%;
+width: 100%;
+height: 100%;
+z-index:9999;
+vertical-align: 50%;
+-ms-transform: translateX(-50%) translateY(-50%);
+-moz-transform: translateX(-50%) translateY(-50%);
+-webkit-transform: translateX(-50%) translateY(-50%);
+transform: translateX(-50%) translateY(-50%);
+}
+
+img.boton-mapas{
+	width: 75px;
+	height: 55px;
+}
+
+div.carousel img{
+	border-radius: 10px;
+}
+
+div.row.primera{
+	margin-top: 5px;
+}
+.btn-flotante-1i{
+	position: fixed;
+	z-index: 900;
+	top: 170px;
+	right: 225px;
+}
+
+.btn-flotante-2i{
+	position: fixed;
+	z-index: 900;
+	top: 400px;
+	right: 225px;
+}
+
+.btn-flotante-3i{
+	position: fixed;
+	z-index: 900;
+	top: 780px;
+	right: 225px;
+}

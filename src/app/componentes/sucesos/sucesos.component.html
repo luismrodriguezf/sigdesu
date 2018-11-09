@@ -1,0 +1,119 @@
+<div class="card" style="margin: 2%">
+  <div class="card-body">
+  <p-progressBar mode="indeterminate" *ngIf="loading2"></p-progressBar>
+        <p-table #dt [value]="sucesos" [globalFilterFields]="['nombre']" [responsive]="true">
+            <ng-template pTemplate="caption">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-6"> 
+                <button type="button" (click)="modal_registro()" style="float: left" class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
+                          <i class="fa fa-plus"></i>
+                </button></div>
+                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                       <div style="text-align: right">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Buscar" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+
+                </div>
+            </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 30%">Descripción</th>
+                    <th>Fecha</th>
+                    <th>Casos</th>
+                    <th>Detalles</th>
+                    <th>Visualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-suceso>
+                <tr>
+                    <td>{{suceso.nombre}}</td>
+                    <td>{{suceso.fecha}}</td>
+                    <th>{{suceso.casos.length}}</th>
+                    <td>
+                        <button type="button" [disabled]="suceso.casos.length == 0"  (click)="ver_casos(suceso)" class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
+                          <i class="fa fa-search"></i>
+                        </button>
+                    </td>
+
+                     <td>
+                        <button [disabled]="suceso.casos.length == 0"  type="button" (click)="ver_mapa(suceso)" class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
+                          <i class="fa fa-map-marker"></i>
+                        </button>
+                    </td>
+                     <td>
+                    <button type="button" (click)="eliminar_suceso(suceso.id)"  class="btn btn-danger bmd-btn-fab bmd-btn-fab-sm" [disabled]="suceso.casos.length > 0">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+                </tr>
+            </ng-template>
+        </p-table>
+  </div>
+</div>
+
+<p-dialog header="Casos del suceso" [(visible)]="detalle" modal="true" [width]="800" >
+    <p-growl [(value)]="msgs"></p-growl>
+    <p-progressBar mode="indeterminate" *ngIf="loading"></p-progressBar>
+    <p-table [value]="casos" [responsive]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 30%">Descripción</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Mostrar</th>
+                <th>Eliminar</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-caso>
+            <tr>
+                <td style="width: 9em">{{caso.descripcion}}</td>
+                <td>{{caso.fecha}}</td>
+                <td>{{caso.hora}}</td>
+                <td>
+                    <button *ngIf="!caso.visible" type="button" class="btn btn-danger bmd-btn-fab bmd-btn-fab-sm"  (click)="cambiar_visibilidad(caso.id)">
+                      <i class="fa fa-eye-slash"></i>
+                    </button>
+                    <button *ngIf="caso.visible" (click)="cambiar_visibilidad(caso.id)" type="button" class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                </td>
+                 <td>
+                    <button type="button" (click)="eliminar_caso(caso.id)" class="btn btn-danger bmd-btn-fab bmd-btn-fab-sm">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>
+
+<p-dialog header="Detalles sobre el mapa" [(visible)]="mapa" modal="true" [width]="800" [height]="500">
+   <div id="mmap"></div>
+</p-dialog>
+
+
+<p-dialog header="Registrar suceso" [(visible)]="modal_registro_suceso" modal="true" [width]="400">
+   <p-progressBar mode="indeterminate" *ngIf="loading2"></p-progressBar>
+   <p-growl [(value)]="msgs"></p-growl>
+  <fieldset class="form-group">
+    <label for="nombre" class="bmd-label-floating">Nombre</label>
+    <input type="text" class="form-control" [(ngModel)]="nombre" id="nombre">
+    <span class="bmd-help">Latitud del caso que desea registrar</span>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="fecha" class="bmd-label-floating">Fecha</label>
+    <input type="date" [max]="hoy" class="form-control"  [value]="hoy" [(ngModel)]="fecha" id="fecha">
+    <span class="bmd-help">Longitud del caso que desea registrar</span>
+  </fieldset>
+   <p-footer>
+      <button type="button" class="btn btn-success"  (click)="registrar_suceso()">Registrar</button>
+      <button type="button" class="btn btn-warning"  (click)="modal_registro_suceso=false">Cancelar</button>
+    </p-footer>
+</p-dialog>

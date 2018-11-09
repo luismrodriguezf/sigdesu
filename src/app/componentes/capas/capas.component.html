@@ -1,0 +1,43 @@
+<button class="dropdown-item" id="abrirAdminCapa" (click)="open(content)">Capas</button>
+
+	<ng-template #content let-c="close" let-d="dismiss">
+	  <div class="modal-header">
+		    <h4 class="modal-title">Administrar Capas</h4>
+		    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+		    	<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="modal-body">
+
+			<app-buscar-capas 
+				[categoria]="categoria"
+				[categorias]="categorias"
+				(capaCambiada)="agregarCapa($event)" 
+				(capaActualizada)="actualizarCapa($event)" 
+				(capaEliminada)="eliminarCapa($event)" 
+				*ngIf="!crearActivado && !editarActivado && !borrarActivado">
+			</app-buscar-capas>
+
+			<app-actualizar-capas 
+				(edicionTerminada)="terminarEdicion()" 
+				[categorias]="categorias" 
+				[capa]="capa" 
+				*ngIf="editarActivado">
+			</app-actualizar-capas>
+
+			<app-eliminar-capas 
+				(borradoTerminado)="terminarBorrado()" 
+				[categorias]="categorias"
+				[capa]="capa" 
+				*ngIf="borrarActivado">
+			</app-eliminar-capas>
+
+			<app-crear-capas 
+				(creacionTerminada)="terminarCreacion()" 
+				[capa]="capa" 
+				*ngIf="crearActivado">
+			</app-crear-capas>
+			
+		</div>
+	</ng-template>

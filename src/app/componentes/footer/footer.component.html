@@ -1,0 +1,619 @@
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="row">
+        <div class="col-12">
+          <img class="cabecera" src="./assets/images/banner6.png">
+        </div>
+      </div>
+      <div class="modal-header">
+        <h4 class="modal-title text-danger">{{ventanaActiva.nombre}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[0].nombre">
+
+          <div class="row">
+            <div class="col-12">
+
+                <p class="text-danger text-left">SIG FUNDESU</p>
+                <p class="text-justify">
+                  Sistema de Información Geográfica para el registro y visualización de información de variables de tipo estructural de las instalaciones deportivas en el estado Sucre Venezuela.
+                </p>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+
+              <img class="proyecto-resultados" src="./assets/images/resultados.png">
+
+            </div>
+          </div>
+
+          <div class="row sub-imagen">
+            <div class="col-12">
+
+                <p class="text-justify">
+                  Parte la información mostrada en este Portal Web, es un resumen de los resultados obtenidos a través de los estudios realizados como parte del proyecto de “Situación actual de las Instalaciones Deportivas en el estado Sucre, Venezuela” en el marco del convenio de cooperación entre la Gobernacion del Estado Sucre y la Fundacion para el Desarrollo Deportivo del estao Sucre         (FUNDESU). RUMBO A SUCRE POTENCIA DEPORTIVA CON EL GOBERNADOR EDWIN ROJAS, con el propósito de aportar información para el apoyo y toma de decisiones que permitan crear,transformar y mejorar las instalaciones deportivas en los 15 Municipios que conforman el estado Sucre.
+                </p>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6 col-xl-5 offset-xl-1 separada">
+
+              <iframe style="width: 100%; height: 100%;"
+              src="https://player.vimeo.com/video/133086046"
+              frameborder="0" webkitallowfullscreen mozallowfullscreen 
+              allowfullscreen></iframe>
+
+            </div>
+            <div class="col-12 col-md-6 col-xl-5 separada">
+
+              <a href="https://blogs.iadb.org/ciudadessostenibles/2016/02/02/cumana-2" target="_blank">
+                <img class="proyecto-resultados" src="./assets/images/cumana.png">
+              </a>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[1].nombre">
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1">
+
+              <div class="card">
+                <img class="card-img-top img-120 center" src="./assets/images/fundesu.png">
+                <div class="card-body text-center">
+                  <p class="card-text text-danger"> FUNDACIÓN PARA EL DESARROLLO DEPORTIVO DEL ESTADO SUCRE. RUMBO A SUCRE POTENCIA DEPORTIVA.</p>
+                  <p class="card-text">Direccion: Av. Cancamure anexo al Polideportivo Felix Lalito Velasquez Cumana, Estado Sucre. Venezuela.</p>
+                  <p class="card-text">Telefono: (+58)(293) 4002403/4516756</p>
+                </div>
+              </div>              
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[2].nombre">
+          <div class="row">
+            <div class="col-12 text-justify">
+
+              <p>
+              El uso del sitio virtual (SIG FUNDESU) de la Fundacion para el Desarrollo del Deporte del estado Sucre (Fundesu)  se rige por los términos y condiciones que a continuación se mencionan. En virtud de la utilización del Sitio Virtual usted acepta estos términos y condiciones y las modificaciones que el Fundesu haga de ellos y publique en el Sitio Virtual.  La Fundesu mantiene el Sitio Virtual exclusivamente con fines informativos.
+              </p>
+
+              <p>
+              Los usuarios pueden descargar, copiar y reimprimir información del Sitio Virtual para fines que no sean comerciales, sujeto a los términos y condiciones que contengan los materiales expresamente atribuidos a terceros, siempre que se mencione a la Fundesu como fuente del material en que se originan.
+              </p>
+
+              <p>
+              Este Sitio Virtual también contiene enlaces a otros sitios virtuales e información que no están bajo el control del FUNDESU. FUNDESU ofrece estos enlaces y cualquier otra información como un servicio para el usuario de su Sitio Virtual, no siendo responsable por el contenido de los mismos. La presencia de un enlace no significa que Fundesu apruebe o secunde su contenido.
+              </p>
+
+              <p>
+              Toda información que se publique en el Sitio Virtual se proporciona en los términos en que se formula, sin garantía expresa o implícita de ningún género, lo que comprende, sin carácter limitativo, garantías de comerciabilidad, adecuación, observancia de normas o requisitos o aplicabilidad para un fin determinado. Los usuarios del Sitio Virtual asumen exclusivamente el riesgo por su utilización.
+              </p>
+
+              <p>
+              FUNDESU está facultado para ampliar, modificar, mejorar o actualizar a su discreción periódicamente, sin dar aviso, el material publicado en el Sitio Virtual, y se reserva el derecho de limitar o dejar de publicar el Sitio Virtual o negar, sin dar aviso, acceso al mismo a cualquier usuario.
+              </p>
+
+              <p>
+              Además, los mapas y cualquier otra información de naturaleza parecida que se encuentre en este Sitio Virtual son sólo para fines de consulta, y pueden no haber sido preparados o ser adecuados para la ingeniería legal, la topografía o cualquier otra finalidad y/o uso específico. Si bien el CSUDO procura proporcionar datos exactos, la información disponible en el Sitio Virtual puede utilizar recursos de datos de otras fuentes, incluyendo fuentes públicas.
+              </p>
+
+              <p>
+              Como tal, FUNDESU no garantiza ni declara que cualquier información esté libre de errores, omisiones y/o inexactitudes posicionales.
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="container container-full" *ngIf="ventanaActiva.nombre==ventanas[3].nombre">
+
+          <div class="row botones-modal">
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-info" (click)="seleccionarVentana(ventanas[3])" disabled>{{ventanas[3].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[4])">{{ventanas[4].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[5])">{{ventanas[5].corto1}}<br>{{ventanas[5].corto2}}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[3].nombre">
+
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1">
+
+                <div class="card text-center">
+                  <img class="card-img-top img-about" src="./assets/images/fundesu.png">
+                  <div class="card-body">
+                    <p class="card-text text-danger">Version 1.0</p>
+                    <p class="card-text">Propiedad de la Fundacion para el Desarrollo del Deporte del estado Sucre Fundesu</p>
+                    <p class="card-text">Contacto: mail@fundesu.com</p>
+                    <p class="card-text">Fuentes: Fundesu, Gobernacion del estado Sucre</p>
+                  </div>
+                </div>              
+              
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container container-full" *ngIf="ventanaActiva.nombre==ventanas[4].nombre">
+
+          <div class="row botones-modal">
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[3])">{{ventanas[3].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-info" (click)="seleccionarVentana(ventanas[4])" disabled>{{ventanas[4].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[5])">{{ventanas[5].corto1}}<br/>{{ventanas[5].corto2}}</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[4].nombre">
+
+          <div class="row">
+
+            <div class="col-12">
+
+              <div class="card-group">
+
+                <div class="card" *ngFor="let investigador of investigadores">
+                  <img class="card-img-top perfil" [src]="'./assets/images/'+investigador.foto">
+                  <div class="card-body">
+                    <p class="card-text text-danger text-center">{{investigador.nombre}}</p>
+                    <p class="card-text">Mail:</p>
+                    <p class="card-text">{{investigador.correo}}</p>
+                    <p class="card-text">Tel: {{investigador.telefono}}</p>
+                  </div>
+                </div>              
+                
+              </div>             
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="container container-full" *ngIf="ventanaActiva.nombre==ventanas[5].nombre">
+
+          <div class="row botones-modal">
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[3])">{{ventanas[3].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[4])">{{ventanas[4].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-info" (click)="seleccionarVentana(ventanas[5])" disabled>{{ventanas[5].corto1}}<br/>{{ventanas[5].corto2}}</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[5].nombre">
+
+          <div class="row" *ngFor="let grupo of desarrolladores">
+
+            <div class="col-12 col-desarrolladores">
+
+              <div class="card-group">
+
+                <div class="card" *ngFor="let desarrollador of grupo">
+                  <img class="card-img-top perfil" [src]="'./assets/images/'+desarrollador.foto">
+                  <div class="card-body">
+                    <p class="card-text text-danger text-center">{{desarrollador.nombre}}</p>
+                    <p class="card-text">Mail:</p>
+                    <p class="card-text">{{desarrollador.correo}}</p>
+                    <p class="card-text">Tel: {{desarrollador.telefono}}</p>
+                  </div>
+                </div>              
+                
+              </div>             
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="c('Close click')">Cerrar</button>
+      </div>      
+    </ng-template>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 col-md-3 separada" *ngFor="let count of contador;">
+          <button type="button" class="btn btn-link btn-block" (click)="abrirModal(ventanas[count], content)">{{ventanas[count].corto}}</button>
+        </div>
+      </div>
+    </div>
+
+<footer class="footer">
+<nav class="navbar navbar-dark bg-default navbar-fixed-bottom">
+
+    <!--Copyright-->
+    <div class="footer-copyright" style="display: block; text-align: center; margin: auto;">
+        <div class="container-fluid">
+            © 2018 Copyright: <a href="https://twitter.com/fundesuoficial?lang=es"> FUNDESU </a>
+        </div>
+    </div>
+
+</nav>
+</footer>
+
+
+
+
+<!--
+cumasig 
+ <ng-template #content let-c="close" let-d="dismiss">
+      <div class="row">
+        <div class="col-12">
+          <img class="cabecera" src="./assets/images/logoinicio.png">
+        </div>
+      </div>
+      <div class="modal-header">
+        <h4 class="modal-title text-danger">{{ventanaActiva.nombre}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[0].nombre">
+
+          <div class="row">
+            <div class="col-12">
+
+                <p class="text-danger text-left">CUMASIG</p>
+                <p class="text-justify">
+                  Sistema de Información Geográfica para el registro y visualización de información de variables de tipo sísmicas, geológicas y geotécnicas, necesarias para el diseño de estructuras nuevas o suplementarias, de Reforzamiento Sismorresistente que permitan reducir la vulnerabilidad y el riesgo sísmico de las edificaciones existentes en la ciudad de Cumaná estado Sucre Venezuela.
+                </p>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+
+              <img class="proyecto-resultados" src="./assets/images/resultados.png">
+
+            </div>
+          </div>
+
+          <div class="row sub-imagen">
+            <div class="col-12">
+
+                <p class="text-justify">
+                  Parte la información mostrada en este Portal Web, es un resumen de los resultados obtenidos a través de los estudios realizados como parte del proyecto de “Reforzamiento Estructural de Edificios Escolares en la Ciudad de Cumaná, Venezuela” en el marco del convenio de cooperación entre la Alcaldía del Municipio Sucre y el Banco Interamericano de Desarrollo (BID), con el propósito de aportar información para el apoyo y toma de decisiones que permitan transformar a la ciudad de Cumaná en una ciudad segura, sostenible y sustentable.
+                </p>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6 col-xl-5 offset-xl-1 separada">
+
+              <iframe style="width: 100%; height: 100%;"
+              src="https://player.vimeo.com/video/133086046"
+              frameborder="0" webkitallowfullscreen mozallowfullscreen 
+              allowfullscreen></iframe>
+
+            </div>
+            <div class="col-12 col-md-6 col-xl-5 separada">
+
+              <a href="https://blogs.iadb.org/ciudadessostenibles/2016/02/02/cumana-2" target="_blank">
+                <img class="proyecto-resultados" src="./assets/images/cumana.png">
+              </a>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[0].nombre">
+
+          <div class="row">
+            <div class="col-12 col-md-8">
+
+              <div class="row">
+                <div class="col-12">
+                  <p class="text-danger text-left">Estudio Geografico</p>
+                  <p class="text-justify">Conjunto de actividades que permiten obtener la informacion geologica y geotecnica del terreno, necesaria para la redaccion de un proyectode construccion.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <div class="row">
+                <div class="col-8 offset-2">
+                  <img class="proyecto" src="./assets/images/proyecto_1.png">
+                </div>
+                <div class="col-8 offset-2">
+                  <img class="proyecto" src="./assets/images/proyecto_2.png">
+                </div>
+                <div class="col-8 offset-2">
+                  <img class="proyecto" src="./assets/images/proyecto_3.png">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-8">
+
+              <div class="row">
+                <div class="col-12">
+                  <p class="text-danger text-left">Sistema de Informacion Geografica</p>
+                  <p class="text-justify">SIG (o GIS, en su acrónimo inglés [Geographic Information System]) es una integración organizada de hardware, software y datos geográficos diseñada para capturar, almacenar, manipular, analizar y desplegar en todas sus formas la información geográficamente referenciada con el fin de resolver problemas complejos de planificación y  de gestión.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <div class="row">
+                <div class="col-8 offset-2">
+                  <img class="proyecto" src="./assets/images/proyecto_4.jpg">
+                </div>
+                <div class="col-8 offset-2">
+                  <img class="proyecto" src="./assets/images/proyecto_5.png">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-8">
+
+              <div class="row">
+                <div class="col-12">
+                  <p class="text-danger text-left">CUMANÁSIG</p>
+                  <p class="text-justify">Sistema de Información Geográfica para el registro y visualización de información de estudios geotecnicos  realizados en el estado Sucre Venezuela.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <div class="row">
+                <div class="col-10 offset-1">
+                  <img class="proyecto" src="./assets/images/proyecto_6.png">
+                </div>
+                <div class="col-4 offset-4">
+                  <img class="proyecto" src="./assets/images/proyecto_7.png">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[1].nombre">
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1">
+
+              <div class="card">
+                <img class="card-img-top img-120 center" src="./assets/images/logo_csudo.png">
+                <div class="card-body text-center">
+                  <p class="card-text text-danger">Centro de Sismologia de la Universidad de Oriente</p>
+                  <p class="card-text">Direccion: Av. Universidad Cerro del medio, parte alta del Decanato de la Universidad de Oriente. Cumana, Estado Sucre. Venezuela.</p>
+                  <p class="card-text">Telefono: (+58)(293) 4002403/4516756</p>
+                </div>
+              </div>              
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[2].nombre">
+          <div class="row">
+            <div class="col-12 text-justify">
+
+              <p>
+              El uso del sitio virtual (CUMASIG) del Centro de Simbología de la Universidad de Oriente (CSUDO)  se rige por los términos y condiciones que a continuación se mencionan. En virtud de la utilización del Sitio Virtual usted acepta estos términos y condiciones y las modificaciones que el CSUDO haga de ellos y publique en el Sitio Virtual.  El CSUDO mantiene el Sitio Virtual exclusivamente con fines informativos.
+              </p>
+
+              <p>
+              Los usuarios pueden descargar, copiar y reimprimir información del Sitio Virtual para fines que no sean comerciales, sujeto a los términos y condiciones que contengan los materiales expresamente atribuidos a terceros, siempre que se mencione al CSUDO como fuente del material en que se originan.
+              </p>
+
+              <p>
+              Este Sitio Virtual también contiene enlaces a otros sitios virtuales e información que no están bajo el control del CSUDO. El CSUDO ofrece estos enlaces y cualquier otra información como un servicio para el usuario de su Sitio Virtual, no siendo responsable por el contenido de los mismos. La presencia de un enlace no significa que el CSUDO apruebe o secunde su contenido.
+              </p>
+
+              <p>
+              Toda información que se publique en el Sitio Virtual se proporciona en los términos en que se formula, sin garantía expresa o implícita de ningún género, lo que comprende, sin carácter limitativo, garantías de comerciabilidad, adecuación, observancia de normas o requisitos o aplicabilidad para un fin determinado. Los usuarios del Sitio Virtual asumen exclusivamente el riesgo por su utilización.
+              </p>
+
+              <p>
+              El CSUDO está facultado para ampliar, modificar, mejorar o actualizar a su discreción periódicamente, sin dar aviso, el material publicado en el Sitio Virtual, y se reserva el derecho de limitar o dejar de publicar el Sitio Virtual o negar, sin dar aviso, acceso al mismo a cualquier usuario.
+              </p>
+
+              <p>
+              Además, los mapas y cualquier otra información de naturaleza parecida que se encuentre en este Sitio Virtual son sólo para fines de consulta, y pueden no haber sido preparados o ser adecuados para la ingeniería legal, la topografía o cualquier otra finalidad y/o uso específico. Si bien el CSUDO procura proporcionar datos exactos, la información disponible en el Sitio Virtual puede utilizar recursos de datos de otras fuentes, incluyendo fuentes públicas.
+              </p>
+
+              <p>
+              Como tal, el CSUDO no garantiza ni declara que cualquier información esté libre de errores, omisiones y/o inexactitudes posicionales.
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="container container-full" *ngIf="ventanaActiva.nombre==ventanas[3].nombre">
+
+          <div class="row botones-modal">
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-info" (click)="seleccionarVentana(ventanas[3])" disabled>{{ventanas[3].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[4])">{{ventanas[4].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[5])">{{ventanas[5].corto1}}<br>{{ventanas[5].corto2}}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[3].nombre">
+
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1">
+
+                <div class="card text-center">
+                  <img class="card-img-top img-about" src="./assets/images/logo2.png">
+                  <div class="card-body">
+                    <p class="card-text text-danger">Version 1.0</p>
+                    <p class="card-text">Propiedad del Centro de Sismologia de la Universidad de Oriente</p>
+                    <p class="card-text">Contacto: mail@sigcumana.com</p>
+                    <p class="card-text">Fuentes: BID, CSUDO</p>
+                  </div>
+                </div>              
+              
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container container-full" *ngIf="ventanaActiva.nombre==ventanas[4].nombre">
+
+          <div class="row botones-modal">
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[3])">{{ventanas[3].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-info" (click)="seleccionarVentana(ventanas[4])" disabled>{{ventanas[4].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[5])">{{ventanas[5].corto1}}<br/>{{ventanas[5].corto2}}</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[4].nombre">
+
+          <div class="row">
+
+            <div class="col-12">
+
+              <div class="card-group">
+
+                <div class="card" *ngFor="let investigador of investigadores">
+                  <img class="card-img-top perfil" [src]="'./assets/images/'+investigador.foto">
+                  <div class="card-body">
+                    <p class="card-text text-danger text-center">{{investigador.nombre}}</p>
+                    <p class="card-text">Mail:</p>
+                    <p class="card-text">{{investigador.correo}}</p>
+                    <p class="card-text">Tel: {{investigador.telefono}}</p>
+                  </div>
+                </div>              
+                
+              </div>             
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="container container-full" *ngIf="ventanaActiva.nombre==ventanas[5].nombre">
+
+          <div class="row botones-modal">
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[3])">{{ventanas[3].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-outline-info" (click)="seleccionarVentana(ventanas[4])">{{ventanas[4].corto}}</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <button type="button" class="btn btn-block btn-info" (click)="seleccionarVentana(ventanas[5])" disabled>{{ventanas[5].corto1}}<br/>{{ventanas[5].corto2}}</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container" *ngIf="ventanaActiva.nombre==ventanas[5].nombre">
+
+          <div class="row" *ngFor="let grupo of desarrolladores">
+
+            <div class="col-12 col-desarrolladores">
+
+              <div class="card-group">
+
+                <div class="card" *ngFor="let desarrollador of grupo">
+                  <img class="card-img-top perfil" [src]="'./assets/images/'+desarrollador.foto">
+                  <div class="card-body">
+                    <p class="card-text text-danger text-center">{{desarrollador.nombre}}</p>
+                    <p class="card-text">Mail:</p>
+                    <p class="card-text">{{desarrollador.correo}}</p>
+                    <p class="card-text">Tel: {{desarrollador.telefono}}</p>
+                  </div>
+                </div>              
+                
+              </div>             
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="c('Close click')">Cerrar</button>
+      </div>      
+    </ng-template>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 col-md-3 separada" *ngFor="let count of contador;">
+          <button type="button" class="btn btn-link btn-block" (click)="abrirModal(ventanas[count], content)">{{ventanas[count].corto}}</button>
+        </div>
+      </div>
+    </div>
+
+<footer class="footer">
+<nav class="navbar navbar-dark bg-default navbar-fixed-bottom">
+
+    Copyright
+    <div class="footer-copyright" style="display: block; text-align: center; margin: auto;">
+        <div class="container-fluid">
+            © 2018 Copyright: <a href="http://csudo.sucre.udo.edu.ve/"> Centro de Sismología </a>
+        </div>
+    </div>
+
+</nav>
+</footer
+
+
+
+-->

@@ -1,0 +1,66 @@
+<div class="row">
+<div class="col-12">
+
+<h5>Administrar datos de Capas</h5>
+	<form class="form">
+		
+
+		<fieldset class="form-group">
+
+		<div class="row">
+
+			<div class="form-group col">
+				<select class="form-control" name="capa" [(ngModel)]="capa" (change)="seleccionarCapa()">
+					<option value="" selected disabled>Seleccione Capa</option>
+					<option *ngFor="let cap of capas" [value]="cap.nombre">{{cap.nombre}}</option>
+				</select>
+			</div>			
+
+		</div>
+
+		<div class="row" *ngIf="capaPaginada.length==0&&capa!=''">
+			<div class="col">
+				<h5 class="text-center">Esta capa aun no tiene datos. <span class="enlaceStyle" (click)="comenzarRegistro()">Haga click aqui para agregar el primer dato</span></h5>
+			</div>
+		</div>	
+		
+		<div class="row short-mod" *ngIf="capaPaginada.length>0">
+
+			<div class="col">
+				
+				<table class="table table-hover table-responsive max-50">
+				  <caption>Datos de la capa
+				  	<button type="button" class="btn btn-outline-info" (click)="retrocederPagina()" [disabled]="numeroPagina==0"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+				  	<button type="button" class="btn btn-outline-info" (click)="avanzarPagina()" [disabled]="numeroPagina==capaPaginada.length-1"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+				  	<button type="button" class="btn btn-outline-success" (click)="comenzarRegistro()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+				  </caption>
+
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col" *ngFor="let att of estructuraActiva">{{att.nombre}}</th>
+				      <th scope="col"></th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr *ngFor="let dato of paginaActiva; let i = index; ">
+				      <th scope="row">{{((numeroPagina+1)*5)-5+i+1}}</th>
+				      <td *ngFor="let att of estructuraActiva">{{dato.properties[att.nombre]}}</td>
+				      <td><app-actualizar-datos (modificacionTerminada)="refrescarCapas($event, 'modificar')" [dato]="dato" [capa]="capaActiva.nombre" [estructura]="estructuraActiva" [posicion]="((numeroPagina+1)*5)-5+i+1"></app-actualizar-datos></td>
+				      <td><app-eliminar-datos (eliminacionTerminada)="refrescarCapas($event, 'eliminar')" [dato]="dato" [capa]="capaActiva.nombre" [estructura]="estructuraActiva" [posicion]="((numeroPagina+1)*5)-5+i+1"></app-eliminar-datos></td>
+				    </tr>			    
+				  </tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+		</fieldset>		
+
+	</form>
+
+</div>
+</div>
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>

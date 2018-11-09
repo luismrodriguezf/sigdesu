@@ -1,0 +1,48 @@
+<p-dialog header="Reportar nuevo caso" [(visible)]="display" modal="true" [width]="400" >
+<p-progressBar mode="indeterminate" *ngIf="loading"></p-progressBar>
+  <fieldset class="form-group">
+    <label for="latitud" class="bmd-label-floating">Latitud</label>
+    <input type="text" class="form-control" [(ngModel)]="lat" id="latitud">
+    <span class="bmd-help">Latitud del caso que desea registrar</span>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="longitud" class="bmd-label-floating">Longitud</label>
+    <input type="text" class="form-control" [(ngModel)]="lng" id="longitud">
+    <span class="bmd-help">Longitud del caso que desea registrar</span>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="fecha" class="bmd-label-floating">Fecha</label>
+    <input type="date" class="form-control" [(ngModel)]="fecha" [max]="hoy" [value]="hoy" id="fecha">
+    <span class="bmd-help">Escriba la fecha del suceso</span>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="hora" class="bmd-label-floating">Hora</label>
+    <input  type="time" class="form-control" [(ngModel)]="hora" cols="1" id="hora">
+    <span class="bmd-help">Escriba la hora del suceso</span>
+  </fieldset>
+
+  <fieldset class="form-group">
+   <label for="sucesos" class="bmd-label-floating">Seleccione el suceso</label>
+    <select class="form-control" [(ngModel)]="suceso" id="sucesos">
+     <option disabled="false" [selected]="true" [ngValue]="0">Seleccionar...</option>
+      <option *ngFor="let x of sucesos" [ngValue]="x.id">{{x.nombre}}</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="descripcion" class="bmd-label-floating">Descripción</label>
+    <textarea  class="form-control" [(ngModel)]="descripcion" cols="1" id="descripcion"></textarea>
+    <span class="bmd-help">Escriba la descripción del evento sucedido</span>
+  </fieldset>
+
+    <p-footer>
+      <button type="button" class="btn btn-success"  (click)="registrar()">Registrar</button>
+      <button type="button" class="btn btn-warning"  (click)="display=false">Cancelar</button>
+    </p-footer>
+</p-dialog>
+<p-growl [(value)]="msgs"></p-growl>
+<div id="map" class="row-full push"></div>
+

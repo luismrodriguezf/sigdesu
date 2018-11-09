@@ -1,0 +1,407 @@
+<!--
+
+
+<input type="file" name="file" id="geojsonfile" style="display: none" (change)="cargarGeojson($event)">
+<button type="button" id="montar" style="display: none" (click)="montarDatos()"></button>
+
+
+            <ng-template #video let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Riesgo Sismico de la ciudad de Cumaná</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col">
+                    <iframe height="315" style="width: 100%" src="https://www.youtube.com/embed/n_7lfodHSYI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cerrar</button>
+              </div>
+            </ng-template>
+
+
+ fundesu -->
+
+<input type="file" name="file" id="geojsonfile" style="display: none" (change)="cargarGeojson($event)">
+<button type="button" id="montar" style="display: none" (click)="montarDatos()"></button>
+
+
+            <ng-template #video let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">FUNDESU</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col">
+                    <iframe height="315" style="width: 100%" src="https://www.youtube.com/watch?v=XXOkpE99bHQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cerrar</button>
+              </div>
+            </ng-template>
+
+
+
+
+<!-- sigcumana
+    <div *ngIf="!isRouteMapa() && !logged" class="form-inline">
+      <button class="btn btn-outline-primary btn-flotante-1" ngbPopover="Iniciar Sesión" placement="left" triggers="mouseenter:mouseleave" (click)="showLogin()">
+        <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+      </button>
+      <button class="btn btn-outline-danger btn-flotante-2" ngbPopover="Ver Mapa" placement="left" triggers="mouseenter:mouseleave" (click)="abrirMapa()">
+        <img class="boton-imagen" src="assets/images/mapas-logo.png">
+      </button>
+      <a href="https://www.iadb.org/es" target="_blank" class="btn btn-outline-info btn-flotante-3" ngbPopover="BID" placement="left" triggers="mouseenter:mouseleave">
+        <img class="boton-imagen" src="assets/images/bid.jpg">
+      </a>
+      <a href="http://csudo.sucre.udo.edu.ve/" target="_blank" class="btn btn-outline-info btn-flotante-4" ngbPopover="CSUDO" placement="left" triggers="mouseenter:mouseleave">
+        <img class="boton-imagen" src="assets/images/logo_csudo.png">
+      </a>
+      <a href="http://alcaldiadecumana.org/" target="_blank" class="btn btn-outline-info btn-flotante-5" ngbPopover="Alcaldía Sucre" placement="left" triggers="mouseenter:mouseleave">
+        <img class="boton-imagen" src="assets/images/logoalcaldia1.png">
+      </a>
+      <button class="btn btn-outline-danger btn-flotante-6" (click)="open(video)" ngbPopover="Riesgo Sísmico" placement="left" triggers="mouseenter:mouseleave">
+        <i class="fa fa-youtube fa-2x" aria-hidden="true"></i>
+      </button>
+    </div>
+-->
+<!-- sigcumana fundesu--> 
+    <div *ngIf="!isRouteMapa() && !logged" class="sidebar-enlaces">
+      <div class="row">
+        <div class="col-5 offset-7">
+
+          <button class="btn btn-outline-primary btn-flotante-1" ngbPopover="Iniciar Sesión" placement="left" triggers="mouseenter:mouseleave" (click)="showLogin()">
+             <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col-5 offset-7">
+
+          <button class="btn btn-outline-danger btn-flotante-2" (click)="abrirMapa()" ngbPopover="Ver Mapa" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/mapas-logo.png">
+          </button>
+        </div>
+        <div class="col-5 offset-7">
+
+          <a href="https://twitter.com/fundesuoficial?lang=es" target="_blank" class="btn btn-outline-info btn-flotante-3" ngbPopover="FUNDESU" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/fundesu.png">
+          </a>
+        </div>
+        <div class="col-5 offset-7">
+
+          <a href="https://www.facebook.com/GobiernoBolivarianoDelEstadoSucre/" target="_blank" class="btn btn-outline-info btn-flotante-4" ngbPopover="GOBERNACIÓN EDO. SUCRE" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/gobernacion.png">
+          </a>
+        </div>
+        <div class="col-5 offset-7">
+
+          <a href="http://www.mindeporte.gob.ve/mindep/index.php/" target="_blank" class="btn btn-outline-info btn-flotante-5" ngbPopover="MPP Juventud y Deporte" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/mppjd.jpeg">
+          </a>
+        </div>
+        <div class="col-5 offset-7">
+
+          <button class="btn btn-outline-danger btn-flotante-6" (click)="open(video)" ngbPopover="SUCRE POTENCIA" placement="left" triggers="mouseenter:mouseleave">
+            <i class="fa fa-youtube fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="!isRouteMapa() && logged" class="sidebar-enlaces">
+      <div class="row">
+        <div class="col-5 offset-7">
+         
+
+          <button class="btn btn-outline-warning btn-flotante-1" ngbPopover="Cerrar Sesión" placement="left" triggers="mouseenter:mouseleave" (click)="logout()">
+            <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col-5 offset-7">
+
+          <button class="btn btn-outline-primary btn-flotante-2" (click)="showRegister()" ngbPopover="Registrar Usuario" placement="left" triggers="mouseenter:mouseleave">
+            <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col-5 offset-7">
+
+          <button class="btn btn-outline-danger btn-flotante-3" (click)="abrirMapa()" ngbPopover="Ver Mapa" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/mapas-logo.png">
+          </button>
+        </div>
+        <div class="col-5 offset-7">
+
+          <a href="https://twitter.com/fundesuoficial?lang=es" target="_blank" class="btn btn-outline-info btn-flotante-4" ngbPopover="FUNDESU" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/fundesu.png">
+          </a>
+        </div>
+        <div class="col-5 offset-7">
+
+          <a href="https://www.facebook.com/GobiernoBolivarianoDelEstadoSucre/" target="_blank" class="btn btn-outline-info btn-flotante-5" ngbPopover="GOBERNACIÓN EDO. SUCRE" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/gobernacion.png">
+     
+          </a>
+        </div>
+        <div class="col-5 offset-7">
+
+          <a href="http://www.mindeporte.gob.ve/mindep/index.php/" target="_blank" class="btn btn-outline-info btn-flotante-6" ngbPopover="MPP Juventud y Deporte" placement="left" triggers="mouseenter:mouseleave">
+            <img class="boton-imagen" src="assets/images/mppjd.jpeg">
+          </a>
+        </div>
+        <div class="col-5 offset-7">
+
+          <button class="btn btn-outline-danger btn-flotante-7" (click)="open(video)" ngbPopover="SUCRE POTENCIA" placement="left" triggers="mouseenter:mouseleave">
+            <i class="fa fa-youtube fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+<nav class="navbar omni-nav navbar-expand-lg navbar-light bg-light">
+  <a *ngIf="!isRouteMapa()" class="navbar-brand" style="width: 100%">
+    <img  class="img-full" src="assets/images/Banner6.png">
+  </a>
+
+  <a *ngIf="isRouteMapa()" class="navbar-brand" routerLink="/" ngbPopover="Inicio" placement="bottom" triggers="mouseenter:mouseleave">
+     <img src="assets/images/sigdesu.png" style="float: left" width="200" height="55">
+  </a>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+<!--
+    <li class="nav-item" *ngIf="logged">
+      <a class="nav-link" href="#" routerLink="/casos">Reportar caso</a>
+    </li>
+    <li class="nav-item" *ngIf="logged">
+      <a class="nav-link" href="#" routerLink="/sucesos">Sucesos</a>
+    </li>
+-->
+
+<!--    
+    <li class="nav-item dropdown" ngbDropdown *ngIf="isRouteMapa()">
+      <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
+      <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdown01">
+        <app-categorias></app-categorias>
+        <app-capas></app-capas>
+        <app-importar-capas [categorias]="categorias"></app-importar-capas>
+      </div>
+    </li>    
+-->
+
+         <li *ngIf="isRouteMapa() && is_admin()" class="nav-item dropdown" ngbDropdown >
+            <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
+            <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdown01">
+              <app-categorias></app-categorias>
+              <app-capas></app-capas>
+              <div class="dropdown-divider"></div>
+              <app-importar-capas [categorias]="categorias"></app-importar-capas>
+            </div>
+        </li>
+<!--
+    <li class="nav-item" *ngIf="isRouteMapa()">
+      <app-categorias></app-categorias>
+    </li>   
+
+    <li class="nav-item" *ngIf="isRouteMapa()">
+      <app-capas></app-capas>
+    </li>   
+
+    <li class="nav-item" *ngIf="isRouteMapa()">
+      <app-importar-capas [categorias]="categorias"></app-importar-capas>
+    </li>   
+-->
+
+
+          <li *ngIf="isRouteMapa()" class="nav-item">
+
+
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Seleccionar capa</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+
+
+                    <ngb-accordion
+                    #acc="ngbAccordion"
+                    [closeOthers]="true"
+                    (panelChange)="limpiarCapasFiltradas($event)">
+
+                        <ngb-panel *ngFor="let cat of categorias; let i = index;" 
+                        [title]="cat.nombre"
+                        [id]="'static-'+i">
+                          <ng-template ngbPanelContent>
+                            <div class="row">
+                                <button type="button"
+                                class="btn btn-success btn-filter"
+                                (click)="filtrarCapas(cat.id)">
+                                </button>
+                              <div class="col-12" *ngFor="let cap of capasFiltradas">
+                                <button *ngIf="!isLayerSelected(cap.nombre)" class="btn btn-outline-info"
+                                (click)="traerCapa(cap.nombre)">{{cap.nombre}}</button>
+
+                                <button *ngIf="isLayerSelected(cap.nombre)" class="btn btn-info"
+                                (click)="removerCapa(cap.nombre)">{{cap.nombre}}</button>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ngb-panel>   
+
+
+                    </ngb-accordion>
+
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cerrar</button>
+              </div>
+            </ng-template>
+
+
+            <a class="nav-link" (click)="open(content)">Visualizar Capas</a>
+          </li>
+
+    </ul>
+
+      <form class="form-inline">
+        <button *ngIf="isRouteMapa()" id="openFilterHeader" 
+        type="button" class="btn btn-outline-info"
+        ngbPopover="Filtrar Marcadores" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapFilter()">
+          <i class="fa fa-filter fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa() && dataOpen && is_admin()" id="openDataHeader" 
+        type="button" class="btn btn-info"
+        ngbPopover="Administrar Datos" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapData()">
+          <i class="fa fa-map-o fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa() && !dataOpen && is_admin()" id="openDataHeader" 
+        type="button" class="btn btn-outline-info"
+        ngbPopover="Administrar Datos" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapData()">
+          <i class="fa fa-map-o fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa() && distanceOpen" id="openDistanceHeader"
+        type="button" class="btn btn-info"
+        ngbPopover="Medir Distancias" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapDistance()">
+          <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa() && !distanceOpen" id="openDistanceHeader"
+        type="button" class="btn btn-outline-info"
+        ngbPopover="Medir Distancias" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapDistance()">
+          <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa()  && areaOpen" id="openAreaHeader"
+        type="button" class="btn btn-info"
+        ngbPopover="Calcular Áreas" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapArea()">
+          <i class="fa fa-bandcamp fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa()  && !areaOpen" id="openAreaHeader"
+        type="button" class="btn btn-outline-info"
+        ngbPopover="Calcular Áreas" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapArea()">
+          <i class="fa fa-bandcamp fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa()  && pointOpen" id="openPointHeader"
+        type="button" class="btn btn-info"
+        ngbPopover="Ubicar Puntos" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapPoint()">
+          <i class="fa fa-street-view fa-2x" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="isRouteMapa()  && !pointOpen" id="openPointHeader"
+        type="button" class="btn btn-outline-info"
+        ngbPopover="Ubicar Puntos" placement="bottom" triggers="mouseenter:mouseleave"
+        (click)="openMapPoint()">
+          <i class="fa fa-street-view fa-2x" aria-hidden="true"></i>
+        </button>
+      </form>
+
+  </div>
+</nav>
+
+<p-dialog header="Registrar nuevo usuario" width="400" modal="true" [(visible)]="display">
+<p-progressBar mode="indeterminate" *ngIf="loading"></p-progressBar>
+
+  <fieldset class="form-group">
+    <label for="nombre" class="bmd-label-floating">Nombre</label>
+    <input type="text" [(ngModel)]="nombre" class="form-control" id="nombre" placeholder="Nombre">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="apellido" class="bmd-label-floating">Apellido</label>
+    <input type="text" [(ngModel)]="apellido"  class="form-control" id="apellido" placeholder="Apellido">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="email2" class="bmd-label-floating">Correo Electronico</label>
+    <input type="email" [(ngModel)]="email"  class="form-control" id="email2" placeholder="Correo">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="password2"  class="bmd-label-floating">Contraseña</label>
+    <input type="password" [(ngModel)]="password" class="form-control"  id="password2" placeholder="******">
+  </fieldset>
+
+  <div class="center">
+    <button type="button" class="btn btn-success btn-lg" (click)="register()">Registrar</button>
+  </div>
+</p-dialog>
+
+<p-dialog header="Iniciar sesión" width="400" modal="true" [(visible)]="registro">
+<p-progressBar mode="indeterminate" *ngIf="loading"></p-progressBar>
+<p-growl [(value)]="msgs"></p-growl>
+
+  <fieldset class="form-group">
+    <label for="email" class="bmd-label-floating">Correo Electronico</label>
+    <input type="email" [(ngModel)]="email"  class="form-control" id="email" placeholder="Correo">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="password" class="bmd-label-floating">Contraseña</label>
+    <input type="password" onkeyup="if(event.keyCode === 13){$('#botonlogin').click();}" [(ngModel)]="password"  class="form-control" id="password" placeholder="*******">
+  </fieldset>
+
+  <div class="center">
+    <button type="button" id="botonlogin" (click)="login()" class="btn btn-success btn-lg">Iniciar sesión</button>
+<!--
+     <br/><br/>
+     <br/><br/>
+    ¿No tienes cuenta? <a href="#" (click)="showRegister()">Registrate</a>
+-->
+  </div>
+</p-dialog>
+
+<p-dialog header="Recuperar contraseña" width="400" modal="true" [(visible)]="recover">
+
+  <span class="fa fa-info fa-2x"></span> Introduzca su correo electronico y le enviaremos su nuevo código de seguridad.
+  <fieldset class="form-group">
+    <label for="email" class="bmd-label-floating">Correo Electronico</label>
+    <input type="email" class="form-control" id="email">
+    <span class="bmd-help">Escriba su correo electronico</span>
+  </fieldset>
+
+  <div class="center">
+    <button type="button" class="btn btn-success">Enviar</button>
+    <button type="button" (click)="showLogin()" class="btn btn-success">Regresar</button>
+  </div>
+</p-dialog>
+
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>
+<flash-messages></flash-messages>

@@ -1,0 +1,46 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edicion de registro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+  	<div class="row short-mod">
+
+      <div class="col"></div>
+
+  		<div class="col">
+  			
+  			<form class="form">
+  				
+  				<div class="row" *ngFor="let att of estructura;let i = index; ">
+  					<div class="col-6" *ngIf="att.tipo=='Text' && att.nombre!='figura' && att.nombre!='color'">
+  						<label class="control-label" [for]="att.nombre">{{att.nombre}}</label>
+  						<input type="text" class="form-control-sm" [name]="att.nombre" [(ngModel)]="dato.properties[att.nombre]">
+  					</div>
+  					<div class="col-6" *ngIf="att.tipo!='Text' && att.nombre!='figura' && att.nombre!='color'">
+  						<label [for]="att.nombre">{{att.nombre}}</label>
+  						<input type="number" class="form-control-sm" [name]="att.nombre" [(ngModel)]="dato.properties[att.nombre]">
+  					</div>
+  				</div>
+
+
+  			</form>
+
+  		</div>
+
+      <div class="col"></div>
+
+  	</div>
+
+  </div>
+  <div class="modal-footer">
+	<button type="button" class="btn btn-outline-success" (click)="actualizarDato()">Guardar<i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+	<button type="button" id="cerrar" class="btn btn-outline-danger" (click)="c('Close click')">Cancelar<i class="fa fa-times" aria-hidden="true"></i></button>
+  </div>
+<i class="fa fa-spinner fa-pulse fa-2x fa-fw" style="z-index: 5000;" *ngIf="loading"></i>
+</ng-template>
+
+<button type="button" class="btn btn-outline-warning" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
